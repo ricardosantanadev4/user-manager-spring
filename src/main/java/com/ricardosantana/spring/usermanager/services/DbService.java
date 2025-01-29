@@ -15,9 +15,9 @@ public class DbService {
     }
 
     public boolean instanciaDB() {
-        String[] nomes = { "Ricardo", "Bolsonaro", "Luiz Inácio Lula Da Silva", "Amanda" };
+        String[] nomes = { "User-01", "User-02", "User-03", "User-04" };
 
-        int numeroDeTestes = 40;
+        int numeroDeTestes = 30;
         for (int i = 0; i < numeroDeTestes; i++) {
             Usuario usuario = new Usuario(
                     null,
