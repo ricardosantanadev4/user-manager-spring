@@ -15,13 +15,11 @@ public class DbService {
     }
 
     public boolean instanciaDB() {
-        String[] nomes = { "User-01", "User-02", "User-03", "User-04" };
-
         int numeroDeTestes = 30;
         for (int i = 0; i < numeroDeTestes; i++) {
             Usuario usuario = new Usuario(
                     null,
-                    nomes[i % nomes.length],
+                    "User-" + (i + 1),
                     "email" + (i + 1) + "@gmail.com",
                     "81999999999");
             this.usuarioRepository.save(usuario);
