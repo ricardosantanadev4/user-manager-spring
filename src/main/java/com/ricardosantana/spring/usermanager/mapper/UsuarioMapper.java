@@ -13,14 +13,15 @@ import com.ricardosantana.spring.usermanager.models.Usuario;
 public class UsuarioMapper {
 
     public Usuario toEntity(UsuarioDTO usuarioDTO) {
-        Usuario usuario = new Usuario(usuarioDTO.id(), usuarioDTO.nome(), usuarioDTO.email(),
+        Usuario usuario = new Usuario(usuarioDTO.id(), usuarioDTO.dataHoraCadastro(),
+                usuarioDTO.usuarioCriador(), usuarioDTO.nome(), usuarioDTO.email(),
                 usuarioDTO.telefone());
         return usuario;
     }
 
     public UsuarioDTO toDTO(Usuario usuario) {
-        return new UsuarioDTO(usuario.getId(), usuario.getNome(), usuario.getEmail(),
-                usuario.getTelefone());
+        return new UsuarioDTO(usuario.getId(), usuario.getDataHoraCadastro(), usuario.getUsuarioCriador(),
+                usuario.getNome(), usuario.getEmail(), usuario.getTelefone());
     }
 
     public UsuarioPageDTO toPageDTO(List<UsuarioDTO> usuariosDto, Page<Usuario> pageUsuario) {

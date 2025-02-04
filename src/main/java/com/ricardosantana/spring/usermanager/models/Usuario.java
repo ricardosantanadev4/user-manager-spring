@@ -1,5 +1,7 @@
 package com.ricardosantana.spring.usermanager.models;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +20,8 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private LocalDateTime dataHoraCadastro;
+    private String usuarioCriador;
     private String nome;
     private String email;
     private String telefone;

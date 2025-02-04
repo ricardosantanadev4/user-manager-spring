@@ -1,5 +1,8 @@
 package com.ricardosantana.spring.usermanager.dtos;
 
-public record UsuarioDTO(Long id, String nome, String email, String telefone) {
+import java.time.LocalDateTime;
+
+public record UsuarioDTO(Long id, LocalDateTime dataHoraCadastro, String usuarioCriador,
+        String nome, String email, String telefone) {
 
 }

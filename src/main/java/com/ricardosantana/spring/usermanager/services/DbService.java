@@ -1,5 +1,7 @@
 package com.ricardosantana.spring.usermanager.services;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Service;
 
 import com.ricardosantana.spring.usermanager.models.Usuario;
@@ -15,10 +17,12 @@ public class DbService {
     }
 
     public boolean instanciaDB() {
-        int numeroDeTestes = 30;
+        int numeroDeTestes = 28;
         for (int i = 0; i < numeroDeTestes; i++) {
             Usuario usuario = new Usuario(
                     null,
+                    LocalDateTime.of(2025, 01, 1, 00, 00, 30),
+                    "Admin",
                     "User-" + (i + 1),
                     "email" + (i + 1) + "@gmail.com",
                     "81999999999");
