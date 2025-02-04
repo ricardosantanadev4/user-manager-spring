@@ -21,7 +21,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime dataHoraCadastro;
-    private String usuarioCriador;
+    private String usuarioCadastrado;
     private String nome;
     private String email;
     private String telefone;

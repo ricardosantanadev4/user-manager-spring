@@ -1,5 +1,6 @@
 package com.ricardosantana.spring.usermanager.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,7 +34,8 @@ public class UsuarioService {
     public UsuarioDTO criarUsuario(UsuarioDTO usuarioDto) {
         this.buscarUsuarioPorEmail(usuarioDto.email());
         Usuario toEntity = this.usuarioMapper.toEntity(usuarioDto);
-        Usuario usuario = this.usuarioRepository.save(toEntity);
+        Usuario usuarioDataAtual = this.adicionarDataAtual(toEntity);
+        Usuario usuario = this.usuarioRepository.save(usuarioDataAtual);
         UsuarioDTO toDto = this.usuarioMapper.toDTO(usuario);
         return toDto;
     }
@@ -45,6 +47,18 @@ public class UsuarioService {
             throw new EntityExistsException("Usuário já cadastrado com o email: " + email);
         }
         return true;
+    }
+
+    public Usuario adicionarDataAtual(Usuario entity) {
+        Usuario usuario = new Usuario();
+        usuario.setId(entity.getId());
+        LocalDateTime dataHoraAtual = LocalDateTime.now();
+        usuario.setDataHoraCadastro(dataHoraAtual);
+        usuario.setUsuarioCadastrado(entity.getUsuarioCadastrado());
+        usuario.setNome(entity.getNome());
+        usuario.setEmail(entity.getEmail());
+        usuario.setTelefone(entity.getTelefone());
+        return usuario;
     }
 
     public UsuarioPageDTO listarUsuariosPaginados(int page, int size, String search) {

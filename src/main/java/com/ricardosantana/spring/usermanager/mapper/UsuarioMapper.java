@@ -14,13 +14,13 @@ public class UsuarioMapper {
 
     public Usuario toEntity(UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario(usuarioDTO.id(), usuarioDTO.dataHoraCadastro(),
-                usuarioDTO.usuarioCriador(), usuarioDTO.nome(), usuarioDTO.email(),
+                usuarioDTO.usuarioCadastrado(), usuarioDTO.nome(), usuarioDTO.email(),
                 usuarioDTO.telefone());
         return usuario;
     }
 
     public UsuarioDTO toDTO(Usuario usuario) {
-        return new UsuarioDTO(usuario.getId(), usuario.getDataHoraCadastro(), usuario.getUsuarioCriador(),
+        return new UsuarioDTO(usuario.getId(), usuario.getDataHoraCadastro(), usuario.getUsuarioCadastrado(),
                 usuario.getNome(), usuario.getEmail(), usuario.getTelefone());
     }
 
