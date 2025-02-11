@@ -1,5 +1,7 @@
 package com.ricardosantana.spring.usermanager.controllers;
 
+import java.time.LocalDateTime;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,8 +37,11 @@ public class UsuarioController {
 
     @GetMapping
     public ResponseEntity<UsuarioPageDTO> listarUsuariosPaginados(@RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size, @RequestParam(required = false) String search) {
-        UsuarioPageDTO usuarioPageDTO = this.usuarioService.listarUsuariosPaginados(page, size, search);
+            @RequestParam(defaultValue = "10") int size, @RequestParam(required = false) String search,
+            @RequestParam(required = false) LocalDateTime dataInicial,
+            @RequestParam(required = false) LocalDateTime dataFinal) {
+        UsuarioPageDTO usuarioPageDTO = this.usuarioService.listarUsuariosPaginados(page, size, search,
+                dataInicial, dataFinal);
         return new ResponseEntity<UsuarioPageDTO>(usuarioPageDTO, HttpStatus.OK);
     }
 

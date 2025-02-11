@@ -18,11 +18,11 @@ public class DbService {
     }
 
     public boolean instanciaDB() {
-        int numeroDeTestes = 28;
+        int numeroDeTestes = 20;
         for (int i = 0; i < numeroDeTestes; i++) {
             Usuario usuario = new Usuario(
                     null,
-                    LocalDateTime.of(2025, 01, 1, 00, 00, 30),
+                    LocalDateTime.of(2025, 01, 1 + i, 00, 00, i++),
                     "Admin",
                     "User-" + (i + 1),
                     "email" + (i + 1) + "@gmail.com",

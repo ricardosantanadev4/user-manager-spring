@@ -61,7 +61,19 @@ public class UsuarioService {
         return usuario;
     }
 
-    public UsuarioPageDTO listarUsuariosPaginados(int page, int size, String search) {
+    public UsuarioPageDTO listarUsuariosPaginados(int page, int size, String search,
+            LocalDateTime dataInicial, LocalDateTime dataFinal) {
+
+        if (!this.verficarDataNula(dataInicial) && !this.verficarDataNula(dataFinal)) {
+            LocalDateTime inicioDoDia = dataInicial.toLocalDate().atStartOfDay(); // 2025-02-12T00:00:00
+            LocalDateTime fimDoDia = dataFinal.toLocalDate()
+                    .atTime(23, 59, 59, 999999999); // 2025-02-28T23:59:59.999999999
+            Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+            Page<Usuario> pageUsuario = this.usuarioRepository.findByDataHoraBetween(inicioDoDia,
+                    fimDoDia, pageable);
+            UsuarioPageDTO usuarioPageDTO = this.paginarUsuariosEmDTO(pageUsuario);
+            return usuarioPageDTO;
+        }
 
         if (this.verificarStringVaziaOuNula(search)) {
             Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
@@ -69,6 +81,7 @@ public class UsuarioService {
             UsuarioPageDTO usuarioPageDTO = this.paginarUsuariosEmDTO(pageUsuario);
             return usuarioPageDTO;
         }
+
         Pageable pageable = PageRequest.of(0, size, Sort.Direction.ASC, "id");
         Page<Usuario> pageUsuario = this.usuarioRepository.searchUsers(search,
                 pageable);
@@ -78,6 +91,10 @@ public class UsuarioService {
 
     public boolean verificarStringVaziaOuNula(String str) {
         return str == null || str.trim().isEmpty();
+    }
+
+    public boolean verficarDataNula(LocalDateTime data) {
+        return data == null;
     }
 
     public UsuarioPageDTO paginarUsuariosEmDTO(Page<Usuario> pageUsuario) {
