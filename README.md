@@ -36,6 +36,7 @@ O projeto está hospedado na **Render** e pode ser acessado pelo link:
 🔗 [User Manager Spring](https://user-manager-spring.onrender.com)  
 Para testar a API em funcionamento juntamente com o Frontend pode acessado pelo link:
 🔗 [User Manager Angular](https://user-manager-angular.vercel.app/auth/login) 
+(Para testar, use o e-mail demo@seudominio.com e a senha demo123. Autenticação real em desenvolvimento.)
 
 ---
 
