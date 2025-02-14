@@ -14,7 +14,7 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Permite todos os endpoints
                         .allowedOrigins("https://user-manager-angular.vercel.app/",
-                                "https://user-manager-spring.onrender.com/") // Substituir pela URL do Vercel
+                                "https://user-manager-spring.onrender.com") // Substituir pela URL do Vercel
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true); // Para autenticação com cookies/sessão
