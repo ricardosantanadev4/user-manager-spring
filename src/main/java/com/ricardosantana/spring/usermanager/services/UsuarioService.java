@@ -13,12 +13,11 @@ import org.springframework.stereotype.Service;
 
 import com.ricardosantana.spring.usermanager.dtos.UsuarioDTO;
 import com.ricardosantana.spring.usermanager.dtos.UsuarioPageDTO;
+import com.ricardosantana.spring.usermanager.exceptions.CustomIllegalArgumentException;
+import com.ricardosantana.spring.usermanager.exceptions.CustomObjectNotFoundException;
 import com.ricardosantana.spring.usermanager.mapper.UsuarioMapper;
 import com.ricardosantana.spring.usermanager.models.Usuario;
 import com.ricardosantana.spring.usermanager.repositories.UsuarioRepository;
-
-import jakarta.persistence.EntityExistsException;
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UsuarioService {
@@ -44,7 +43,7 @@ public class UsuarioService {
         Optional<Usuario> optionalUsuario = this.usuarioRepository.findByEmail(email);
 
         if (optionalUsuario.isPresent() && optionalUsuario.get().getEmail().equals(email)) {
-            throw new EntityExistsException("Usuário já cadastrado com o email: " + email);
+            throw new CustomIllegalArgumentException("Usuário já cadastrado com o email: " + email);
         }
         return true;
     }
@@ -117,7 +116,7 @@ public class UsuarioService {
     public Usuario buscarUsuarioPorId(Long usuarioId) {
         Optional<Usuario> optionalUsuario = this.usuarioRepository.findById(usuarioId);
         if (!optionalUsuario.isPresent()) {
-            throw new EntityNotFoundException("Usuário não encontrado com id: " + usuarioId);
+            throw new CustomObjectNotFoundException("Usuário não encontrado com id: " + usuarioId);
         }
         Usuario usuario = optionalUsuario.get();
         return usuario;
