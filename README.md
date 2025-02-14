@@ -64,8 +64,8 @@ mvn spring-boot:run
 A API possui uma documentação interativa via Swagger, onde você pode visualizar e testar os endpoints disponíveis.
 
 📌 **Acesso à documentação:**  
-🔗 [Swagger - Ambiente Local](http://localhost:8080/swagger-ui)  
-🔗 [Swagger - Servidor Hospedado](https://user-manager-spring.onrender.com/swagger-ui)  
+🔗 [Swagger - Ambiente Local](http://localhost:8080/api/swagger-ui)  
+🔗 [Swagger - Servidor Hospedado](https://user-manager-spring.onrender.com/api/swagger-ui)  
 
 ### **Contato**
 Caso tenha alguma dúvida ou sugestão, fique à vontade para entrar em contato!
