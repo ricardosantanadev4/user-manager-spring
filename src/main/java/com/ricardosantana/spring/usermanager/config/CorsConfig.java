@@ -13,7 +13,8 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Permite todos os endpoints
-                        .allowedOrigins("https://user-manager-spring.onrender.com/") // Substituir pela URL do Vercel
+                        .allowedOrigins("https://user-manager-spring.onrender.com/api/swagger-ui") // Substituir pela
+                                                                                                   // URL do Vercel
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true); // Para autenticação com cookies/sessão
