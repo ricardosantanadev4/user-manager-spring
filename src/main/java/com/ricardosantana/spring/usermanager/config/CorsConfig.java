@@ -1,25 +1,24 @@
-// package com.ricardosantana.spring.usermanager.config;
+package com.ricardosantana.spring.usermanager.config;
 
-// import org.springframework.context.annotation.Bean;
-// import org.springframework.context.annotation.Configuration;
-// import org.springframework.web.servlet.config.annotation.CorsRegistry;
-// import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-// @Configuration
-// public class CorsConfig {
-// @Bean
-// public WebMvcConfigurer corsConfigurer() {
-// return new WebMvcConfigurer() {
-// @Override
-// public void addCorsMappings(CorsRegistry registry) {
-// registry.addMapping("/**") // Permite todos os endpoints
-// .allowedOrigins("https://user-manager-angular.vercel.app/",
-// "https://user-manager-spring.onrender.com/") // Domínios dos servidores de
-// hospedagem
-// .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-// .allowedHeaders("*")
-// .allowCredentials(true); // Para autenticação com cookies/sessão
-// }
-// };
-// }
-// }
+@Configuration
+public class CorsConfig {
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**") // Permite todos os endpoints
+                        .allowedOrigins("https://user-manager-angular.vercel.app/",
+                                "https://user-manager-spring.onrender.com/") // Domínios dos servidores dehospedagem
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true); // Para autenticação com cookies/sessão
+            }
+        };
+    }
+}
