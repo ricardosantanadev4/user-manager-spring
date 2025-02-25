@@ -142,7 +142,8 @@ public class SecurityConfig {
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*")); // Permite todos os headers na requisição
         config.setExposedHeaders(List.of(HttpHeaders.AUTHORIZATION)); // 🔥 Expondo o header Authorization
-
+        config.setAllowCredentials(true); // 🔥 Importante para autenticação
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
