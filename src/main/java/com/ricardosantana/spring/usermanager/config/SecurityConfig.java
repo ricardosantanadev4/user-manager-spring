@@ -137,8 +137,8 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
-                "https://user-manager-angular.vercel.app/",
-                "https://user-manager-spring.onrender.com/"));
+                "https://user-manager-angular.vercel.app",
+                "https://user-manager-spring.onrender.com"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*")); // Permite todos os headers na requisição
         config.setExposedHeaders(List.of(HttpHeaders.AUTHORIZATION)); // 🔥 Expondo o header Authorization
