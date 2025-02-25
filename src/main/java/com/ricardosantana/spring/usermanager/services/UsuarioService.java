@@ -17,7 +17,7 @@ import com.ricardosantana.spring.usermanager.exceptions.CustomIllegalArgumentExc
 import com.ricardosantana.spring.usermanager.exceptions.CustomObjectNotFoundException;
 import com.ricardosantana.spring.usermanager.mapper.UsuarioMapper;
 import com.ricardosantana.spring.usermanager.models.Usuario;
-import com.ricardosantana.spring.usermanager.repositories.UsuarioRepository;
+import com.ricardosantana.spring.usermanager.repositorys.UsuarioRepository;
 
 @Service
 public class UsuarioService {

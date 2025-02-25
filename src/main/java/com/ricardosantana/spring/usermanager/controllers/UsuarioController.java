@@ -32,243 +32,243 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Usuários", description = "Gerenciamento de usuários na aplicação")
 public class UsuarioController {
 
-    private final UsuarioService usuarioService;
+        private final UsuarioService usuarioService;
 
-    public UsuarioController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
+        public UsuarioController(UsuarioService usuarioService) {
+                this.usuarioService = usuarioService;
+        }
 
-    @Operation(
+        @Operation(
 
-            summary = "Criar um novo usuário",
+                        summary = "Criar um novo usuário",
 
-            description = "Cria um novo usuário no sistema com os dados fornecidos.",
+                        description = "Cria um novo usuário no sistema com os dados fornecidos.",
 
-            responses = {
+                        responses = {
 
-                    @ApiResponse(
+                                        @ApiResponse(
 
-                            responseCode = "201",
+                                                        responseCode = "201",
 
-                            description = "Usuário criado com sucesso",
+                                                        description = "Usuário criado com sucesso",
 
-                            content = @Content(
+                                                        content = @Content(
 
-                                    mediaType = "application/json",
+                                                                        mediaType = "application/json",
 
-                                    schema = @Schema(
+                                                                        schema = @Schema(
 
-                                            implementation = UsuarioDTO.class))),
-                    @ApiResponse(
+                                                                                        implementation = UsuarioDTO.class))),
+                                        @ApiResponse(
 
-                            responseCode = "400",
+                                                        responseCode = "400",
 
-                            description = "Requisição inválida")
-            })
-    @PostMapping("/criar")
-    public ResponseEntity<UsuarioDTO> criarUsuario(@RequestBody UsuarioDTO usuarioDto) {
-        UsuarioDTO body = this.usuarioService.criarUsuario(usuarioDto);
-        return new ResponseEntity<UsuarioDTO>(body, HttpStatus.CREATED);
-    }
+                                                        description = "Requisição inválida")
+                        })
+        @PostMapping("/criar")
+        public ResponseEntity<UsuarioDTO> criarUsuario(@RequestBody UsuarioDTO usuarioDto) {
+                UsuarioDTO body = this.usuarioService.criarUsuario(usuarioDto);
+                return new ResponseEntity<UsuarioDTO>(body, HttpStatus.CREATED);
+        }
 
-    @Operation(summary = "Listar todos os usuários", description = "Retorna uma lista paginada de todos os usuários cadastrados")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Lista de usuários retornada com sucesso"),
-            @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
-    })
+        @Operation(summary = "Listar todos os usuários", description = "Retorna uma lista paginada de todos os usuários cadastrados")
+        @ApiResponses({
+                        @ApiResponse(responseCode = "200", description = "Lista de usuários retornada com sucesso"),
+                        @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+        })
 
-    @GetMapping
-    public ResponseEntity<UsuarioPageDTO> listarUsuariosPaginados(
-            @Parameter(
+        @GetMapping
+        public ResponseEntity<UsuarioPageDTO> listarUsuariosPaginados(
+                        @Parameter(
 
-                    description = "O número da página a ser exibida, começando do 0, caso não seja passado um valor no parâmetro.",
+                                        description = "O número da página a ser exibida, começando do 0, caso não seja passado um valor no parâmetro.",
 
-                    example = "0")
+                                        example = "0")
 
-            @RequestParam(defaultValue = "0") int page,
+                        @RequestParam(defaultValue = "0") int page,
 
-            @Parameter(
+                        @Parameter(
 
-                    description = "O número de itens por página é definido com valor 10, caso o valor não seja passado no parâmetro.",
+                                        description = "O número de itens por página é definido com valor 10, caso o valor não seja passado no parâmetro.",
 
-                    example = "10")
+                                        example = "10")
 
-            @RequestParam(defaultValue = "10") int size,
+                        @RequestParam(defaultValue = "10") int size,
 
-            @Parameter(
+                        @Parameter(
 
-                    description = "Texto para filtrar usuários por nome ou outros campos. Esse parâmetro não é obrigatório.",
+                                        description = "Texto para filtrar usuários por nome ou outros campos. Esse parâmetro não é obrigatório.",
 
-                    example = "João") @RequestParam(required = false) String search,
+                                        example = "João") @RequestParam(required = false) String search,
 
-            @Parameter(
+                        @Parameter(
 
-                    description = "Data inicial para o filtro de data. Esse parâmetro não é obrigatório.",
+                                        description = "Data inicial para o filtro de data. Esse parâmetro não é obrigatório.",
 
-                    example = "2025-01-01T00:00:00")
+                                        example = "2025-01-01T00:00:00")
 
-            @RequestParam(required = false) LocalDateTime dataInicial,
+                        @RequestParam(required = false) LocalDateTime dataInicial,
 
-            @Parameter(
+                        @Parameter(
 
-                    description = "Data final para o filtro de data. Esse parâmetro não é obrigatório.",
+                                        description = "Data final para o filtro de data. Esse parâmetro não é obrigatório.",
 
-                    example = "2025-01-31T23:59:59")
+                                        example = "2025-01-31T23:59:59")
 
-            @RequestParam(required = false) LocalDateTime dataFinal) {
-        UsuarioPageDTO usuarioPageDTO = this.usuarioService.listarUsuariosPaginados(page, size, search,
-                dataInicial, dataFinal);
-        return new ResponseEntity<UsuarioPageDTO>(usuarioPageDTO, HttpStatus.OK);
-    }
+                        @RequestParam(required = false) LocalDateTime dataFinal) {
+                UsuarioPageDTO usuarioPageDTO = this.usuarioService.listarUsuariosPaginados(page, size, search,
+                                dataInicial, dataFinal);
+                return new ResponseEntity<UsuarioPageDTO>(usuarioPageDTO, HttpStatus.OK);
+        }
 
-    @Operation(
+        @Operation(
 
-            summary = "Buscar usuário por ID",
+                        summary = "Buscar usuário por ID",
 
-            description = "Recupera os detalhes de um usuário específico com base no ID fornecido.")
-    @ApiResponses(value = {
-            @ApiResponse(
+                        description = "Recupera os detalhes de um usuário específico com base no ID fornecido.")
+        @ApiResponses(value = {
+                        @ApiResponse(
 
-                    responseCode = "200",
+                                        responseCode = "200",
 
-                    description = "Usuário encontrado",
+                                        description = "Usuário encontrado",
 
-                    content = @Content(
+                                        content = @Content(
 
-                            mediaType = "application/json",
+                                                        mediaType = "application/json",
 
-                            schema = @Schema(
+                                                        schema = @Schema(
 
-                                    implementation = UsuarioDTO.class))),
+                                                                        implementation = UsuarioDTO.class))),
 
-            @ApiResponse(
+                        @ApiResponse(
 
-                    responseCode = "404",
+                                        responseCode = "404",
 
-                    description = "Usuário não encontrado"),
-            @ApiResponse(
+                                        description = "Usuário não encontrado"),
+                        @ApiResponse(
 
-                    responseCode = "400",
+                                        responseCode = "400",
 
-                    description = "ID do usuário inválido")
-    })
+                                        description = "ID do usuário inválido")
+        })
 
-    @GetMapping("/{usuarioId}")
-    public ResponseEntity<UsuarioDTO> buscarUsuarioPorID(
-            @Parameter(
+        @GetMapping("/{usuarioId}")
+        public ResponseEntity<UsuarioDTO> buscarUsuarioPorID(
+                        @Parameter(
 
-                    description = "ID do usuário a ser consultado",
+                                        description = "ID do usuário a ser consultado",
 
-                    example = "1")
+                                        example = "1")
 
-            @PathVariable Long usuarioId) {
-        Usuario usuario = this.usuarioService.buscarUsuarioPorId(usuarioId);
-        UsuarioDTO usuarioDto = this.usuarioService.toDto(usuario);
-        return new ResponseEntity<UsuarioDTO>(usuarioDto, HttpStatus.OK);
-    }
+                        @PathVariable Long usuarioId) {
+                Usuario usuario = this.usuarioService.buscarUsuarioPorId(usuarioId);
+                UsuarioDTO usuarioDto = this.usuarioService.toDto(usuario);
+                return new ResponseEntity<UsuarioDTO>(usuarioDto, HttpStatus.OK);
+        }
 
-    @Operation(
+        @Operation(
 
-            summary = "Atualizar um usuário",
+                        summary = "Atualizar um usuário",
 
-            description = "Atualiza os dados de um usuário existente com base no ID fornecido.",
+                        description = "Atualiza os dados de um usuário existente com base no ID fornecido.",
 
-            responses = {
+                        responses = {
 
-                    @ApiResponse(
+                                        @ApiResponse(
 
-                            responseCode = "200",
+                                                        responseCode = "200",
 
-                            description = "Usuário atualizado com sucesso",
+                                                        description = "Usuário atualizado com sucesso",
 
-                            content = @Content(mediaType = "application/json",
+                                                        content = @Content(mediaType = "application/json",
 
-                                    schema = @Schema(
+                                                                        schema = @Schema(
 
-                                            implementation = UsuarioDTO.class))),
+                                                                                        implementation = UsuarioDTO.class))),
 
-                    @ApiResponse(
+                                        @ApiResponse(
 
-                            responseCode = "400",
+                                                        responseCode = "400",
 
-                            description = "Requisição inválida"),
+                                                        description = "Requisição inválida"),
 
-                    @ApiResponse(
+                                        @ApiResponse(
 
-                            responseCode = "404",
+                                                        responseCode = "404",
 
-                            description = "Usuário não encontrado")
-            })
-    @PutMapping("/{usuarioId}")
-    public ResponseEntity<UsuarioDTO> atualizarUsuario(
+                                                        description = "Usuário não encontrado")
+                        })
+        @PutMapping("/{usuarioId}")
+        public ResponseEntity<UsuarioDTO> atualizarUsuario(
 
-            @Parameter(
+                        @Parameter(
 
-                    description = "ID do usuário a ser atualizado",
+                                        description = "ID do usuário a ser atualizado",
 
-                    example = "1")
+                                        example = "1")
 
-            @PathVariable Long usuarioId,
+                        @PathVariable Long usuarioId,
 
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                        @io.swagger.v3.oas.annotations.parameters.RequestBody(
 
-                    description = "Dados atualizados do usuário",
+                                        description = "Dados atualizados do usuário",
 
-                    required = true,
+                                        required = true,
 
-                    content = @Content(
+                                        content = @Content(
 
-                            mediaType = "application/json",
+                                                        mediaType = "application/json",
 
-                            schema = @Schema(
+                                                        schema = @Schema(
 
-                                    implementation = UsuarioDTO.class)))
+                                                                        implementation = UsuarioDTO.class)))
 
-            @RequestBody UsuarioDTO usuarioDto) {
-        UsuarioDTO body = this.usuarioService.atualizarUsuario(usuarioId, usuarioDto);
-        return new ResponseEntity<UsuarioDTO>(body, HttpStatus.OK);
-    }
+                        @RequestBody UsuarioDTO usuarioDto) {
+                UsuarioDTO body = this.usuarioService.atualizarUsuario(usuarioId, usuarioDto);
+                return new ResponseEntity<UsuarioDTO>(body, HttpStatus.OK);
+        }
 
-    @Operation(
+        @Operation(
 
-            summary = "Remover um usuário",
+                        summary = "Remover um usuário",
 
-            description = "Remove um usuário do sistema com base no ID fornecido.",
+                        description = "Remove um usuário do sistema com base no ID fornecido.",
 
-            responses = {
+                        responses = {
 
-                    @ApiResponse(
+                                        @ApiResponse(
 
-                            responseCode = "204",
+                                                        responseCode = "204",
 
-                            description = "Usuário removido com sucesso"),
+                                                        description = "Usuário removido com sucesso"),
 
-                    @ApiResponse(
+                                        @ApiResponse(
 
-                            responseCode = "404",
+                                                        responseCode = "404",
 
-                            description = "Usuário não encontrado"),
+                                                        description = "Usuário não encontrado"),
 
-                    @ApiResponse(
+                                        @ApiResponse(
 
-                            responseCode = "400",
+                                                        responseCode = "400",
 
-                            description = "Requisição inválida")
-            })
+                                                        description = "Requisição inválida")
+                        })
 
-    @DeleteMapping("/{usuarioId}")
-    public ResponseEntity<Void> removerUsuario(
+        @DeleteMapping("/{usuarioId}")
+        public ResponseEntity<Void> removerUsuario(
 
-            @Parameter(
+                        @Parameter(
 
-                    description = "ID do usuário a ser removido",
+                                        description = "ID do usuário a ser removido",
 
-                    required = true,
+                                        required = true,
 
-                    example = "1")
+                                        example = "1")
 
-            @PathVariable Long usuarioId) {
-        this.usuarioService.removerUsuario(usuarioId);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-    }
+                        @PathVariable Long usuarioId) {
+                this.usuarioService.removerUsuario(usuarioId);
+                return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
 }

@@ -1,12 +1,12 @@
 package com.ricardosantana.spring.usermanager.services;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 
+import com.ricardosantana.spring.usermanager.enums.Role;
 import com.ricardosantana.spring.usermanager.models.Usuario;
-import com.ricardosantana.spring.usermanager.repositories.UsuarioRepository;
+import com.ricardosantana.spring.usermanager.repositorys.UsuarioRepository;
 
 @Service
 public class DbService {
@@ -26,7 +26,9 @@ public class DbService {
                     "Admin",
                     "User-" + (i + 1),
                     "email" + (i + 1) + "@gmail.com",
-                    "81999999999");
+                    "",
+                    "81999999999",
+                    Role.USER);
             this.usuarioRepository.save(usuario);
         }
         return true;

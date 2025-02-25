@@ -1,4 +1,4 @@
-package com.ricardosantana.spring.usermanager.repositories;
+package com.ricardosantana.spring.usermanager.repositorys;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
