@@ -32,8 +32,8 @@ O **User Manager Spring** é um sistema de backend para gerenciamento de usuári
 ---
 
 ### **Hospedagem**
-O projeto está hospedado na **Render** e pode ser acessado pelo link:  
-🔗 [User Manager Spring](https://user-manager-spring.onrender.com)  
+O projeto está hospedado na **Render** e pode ser acessado pela interface swagger-ui :  
+🔗 [Swagger - Servidor Hospedado](https://user-manager-spring.onrender.com/api/swagger-ui)  
 Para testar a API em funcionamento juntamente com o Frontend pode acessado pelo link:
 🔗 [User Manager Angular](https://user-manager-angular.vercel.app/auth/login) 
 (Para testar, use o e-mail demo@seudominio.com e a senha demo123. Autenticação real em desenvolvimento.)
