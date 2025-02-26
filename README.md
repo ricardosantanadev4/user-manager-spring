@@ -37,7 +37,7 @@ O projeto está hospedado na **Render** e pode ser acessado pela interface swagg
 🔗 [Swagger - Servidor Hospedado](https://user-manager-spring.onrender.com/api/swagger-ui)  
 Para testar a API em funcionamento juntamente com o Frontend pode acessado pelo link:
 🔗 [User Manager Angular](https://user-manager-angular.vercel.app/auth/login) 
-(Para testar, use os seguintes emails: admin@domain.com e a senha Admin#2025 para o perfil ADMIN ou user@domain.com e senha User#2025 para testar o USER. O usuário de perfil ADMIN pode executar toadas as assoões no sistema, enquanto o usuário de perfil USER só tem permisão para visualizar as informações.)
+(Para testar, use os seguintes emails: admin@domain.com e a senha Admin#2025 para o perfil Admin ou user@domain.com e senha User#2025 para testar o User. O usuário de perfil Admin pode realizar todas ações no sistema inclusive excluir e editar, enquanto o usuário de perfil User só tem permisão para visualizar as informações.)
 
 ---
 
