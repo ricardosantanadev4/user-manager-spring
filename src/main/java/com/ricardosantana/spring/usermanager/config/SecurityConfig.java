@@ -50,7 +50,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // 🔥 Habilita CORS
+                // .cors(cors -> cors.configurationSource(corsConfigurationSource())) // 🔥 Habilita CORS
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/token/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/usuarios/**").authenticated()
@@ -133,19 +133,19 @@ public class SecurityConfig {
         return jwtAuthenticationConverter;
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of(
-                "https://user-manager-angular.vercel.app",
-                "https://user-manager-spring.onrender.com"));
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*")); // Permite todos os headers na requisição
-        config.setExposedHeaders(List.of(HttpHeaders.AUTHORIZATION)); // 🔥 Expondo o header Authorization
-        config.setAllowCredentials(true); // 🔥 Importante para autenticação
+    // @Bean
+    // public CorsConfigurationSource corsConfigurationSource() {
+    //     CorsConfiguration config = new CorsConfiguration();
+    //     config.setAllowedOrigins(List.of(
+    //             "https://user-manager-angular.vercel.app",
+    //             "https://user-manager-spring.onrender.com"));
+    //     config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    //     config.setAllowedHeaders(List.of("*")); // Permite todos os headers na requisição
+    //     config.setExposedHeaders(List.of(HttpHeaders.AUTHORIZATION)); // 🔥 Expondo o header Authorization
+    //     config.setAllowCredentials(true); // 🔥 Importante para autenticação
         
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
+    //     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    //     source.registerCorsConfiguration("/**", config);
+    //     return source;
+    // }
 }
