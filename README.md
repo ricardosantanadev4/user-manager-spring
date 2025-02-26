@@ -7,6 +7,7 @@ O **User Manager Spring** é um sistema de backend para gerenciamento de usuári
 ---
 
 ### **Funcionalidades**
+- Autenticação de usuário via token JWT
 - Cadastro de novos usuários  
 - Listagem de usuários  
 - Atualização de informações de usuários  
@@ -36,7 +37,7 @@ O projeto está hospedado na **Render** e pode ser acessado pela interface swagg
 🔗 [Swagger - Servidor Hospedado](https://user-manager-spring.onrender.com/api/swagger-ui)  
 Para testar a API em funcionamento juntamente com o Frontend pode acessado pelo link:
 🔗 [User Manager Angular](https://user-manager-angular.vercel.app/auth/login) 
-(Para testar, use o e-mail demo@seudominio.com e a senha demo123. Autenticação real em desenvolvimento.)
+(Para testar, use os seguintes emails: admin@domain.com e a senha Admin#2025 para o perfil ADMIN ou user@domain.com e senha User#2025 para testar o USER. O usuário de perfil ADMIN pode executar toadas as assoões no sistema, enquanto o usuário de perfil USER só tem permisão para visualizar as informações.)
 
 ---
 
