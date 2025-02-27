@@ -56,6 +56,7 @@ public class TokenController {
                 .issuer("mybackend")
                 .subject(usuario.get().getId().toString())
                 .claim("role", "ROLE_" + usuario.get().getRole())
+                .claim("nome", usuario.get().getNome())
                 .issuedAt(now)
                 .expiresAt(now.plusSeconds(expiresIn)).build();
 

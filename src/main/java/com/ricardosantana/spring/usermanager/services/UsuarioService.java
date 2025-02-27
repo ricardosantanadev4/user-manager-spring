@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ricardosantana.spring.usermanager.dtos.UsuarioDTO;
@@ -24,17 +25,21 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
+    private BCryptPasswordEncoder passwordEncoder;
 
-    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper) {
+    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper,
+            BCryptPasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioMapper = usuarioMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public UsuarioDTO criarUsuario(UsuarioDTO usuarioDto) {
         this.buscarUsuarioPorEmail(usuarioDto.email());
         Usuario toEntity = this.usuarioMapper.toEntity(usuarioDto);
         Usuario usuarioDataAtual = this.adicionarDataAtual(toEntity);
-        Usuario usuario = this.usuarioRepository.save(usuarioDataAtual);
+        Usuario usuarioSenhaCodificada = this.codificarSenha(usuarioDataAtual);
+        Usuario usuario = this.usuarioRepository.save(usuarioSenhaCodificada);
         UsuarioDTO toDto = this.usuarioMapper.toDTO(usuario);
         return toDto;
     }
@@ -56,7 +61,21 @@ public class UsuarioService {
         usuario.setUsuarioCadastrado(entity.getUsuarioCadastrado());
         usuario.setNome(entity.getNome());
         usuario.setEmail(entity.getEmail());
+        usuario.setSenha(entity.getSenha());
         usuario.setTelefone(entity.getTelefone());
+        usuario.setRole(entity.getRole());
+        return usuario;
+    }
+
+    public Usuario codificarSenha(Usuario entity) {
+        Usuario usuario = new Usuario();
+        usuario.setId(entity.getId());
+        usuario.setDataHoraCadastro(entity.getDataHoraCadastro());
+        usuario.setNome(entity.getNome());
+        usuario.setEmail(entity.getEmail());
+        usuario.setSenha(passwordEncoder.encode(entity.getSenha()));
+        usuario.setTelefone(entity.getTelefone());
+        usuario.setRole(entity.getRole());
         return usuario;
     }
 

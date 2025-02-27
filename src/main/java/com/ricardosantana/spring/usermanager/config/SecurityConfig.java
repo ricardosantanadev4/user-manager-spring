@@ -49,7 +49,8 @@ public class SecurityConfig {
      */
     @Value("${jwt.public.key}")
     private RSAPublicKey publicKey;
-    // Ativar quuando for testar localmente
+
+    // // Ativar quuando for testar localmente
     // @Value("${jwt.private.key}")
     // private RSAPrivateKey privateKey;
 
@@ -92,45 +93,47 @@ public class SecurityConfig {
     }
 
     // /*
-    // * Ativar quando for testar localmente
-    // * Cria e retorna um JwtEncoder, que é responsável por gerar tokens JWT
-    // * assinados usando uma chave RSA.
-    // * Detalhes:
-    // * Cria uma chave RSA usando a chave pública e privada.
-    // * this.publicKey: Chave pública (usada para validar tokens assinados).
-    // * this.privateKey: Chave privada (usada para assinar tokens JWT).
-    // * Retorna um encoder JWT que usa essa chave para assinar tokens.
-    // */
+    //  * Ativar quando for testar localmente
+    //  * Cria e retorna um JwtEncoder, que é responsável por gerar tokens JWT
+    //  * assinados usando uma chave RSA.
+    //  * Detalhes:
+    //  * Cria uma chave RSA usando a chave pública e privada.
+    //  * this.publicKey: Chave pública (usada para validar tokens assinados).
+    //  * this.privateKey: Chave privada (usada para assinar tokens JWT).
+    //  * Retorna um encoder JWT que usa essa chave para assinar tokens.
+    //  */
     // @Bean
     // public JwtEncoder jwtEncoder() {
-    // JWK jwk = new RSAKey.Builder(this.publicKey).privateKey(privateKey).build();
-    // var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
-    // return new NimbusJwtEncoder(jwks);
+    //     JWK jwk = new RSAKey.Builder(this.publicKey).privateKey(privateKey).build();
+    //     var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
+    //     return new NimbusJwtEncoder(jwks);
     // }
 
     // Ativar quando for para o servidor de hospedagem
     @Bean
     public JwtEncoder jwtEncoder() throws Exception {
-        // Converte a chave privada da variável de ambiente para RSAPrivateKey
-        RSAPrivateKey privateKey = getPrivateKeyFromPEM(privateKeyPem);
+    // Converte a chave privada da variável de ambiente para RSAPrivateKey
+    RSAPrivateKey privateKey = getPrivateKeyFromPEM(privateKeyPem);
 
-        JWK jwk = new RSAKey.Builder(publicKey).privateKey(privateKey).build();
-        var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
-        return new NimbusJwtEncoder(jwks);
+    JWK jwk = new RSAKey.Builder(publicKey).privateKey(privateKey).build();
+    var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
+    return new NimbusJwtEncoder(jwks);
     }
 
-    private RSAPrivateKey getPrivateKeyFromPEM(String privateKeyPem) throws Exception {
-        // Remove cabeçalhos e rodapés do formato PEM
-        String privateKeyPEM = privateKeyPem
-                .replace("-----BEGIN PRIVATE KEY-----", "")
-                .replace("-----END PRIVATE KEY-----", "")
-                .replaceAll("\\s+", ""); // Remove espaços e quebras de linha
+    // Ativar quando for para o servidor de hospedagem
+    private RSAPrivateKey getPrivateKeyFromPEM(String privateKeyPem) throws
+    Exception {
+    // Remove cabeçalhos e rodapés do formato PEM
+    String privateKeyPEM = privateKeyPem
+    .replace("-----BEGIN PRIVATE KEY-----", "")
+    .replace("-----END PRIVATE KEY-----", "")
+    .replaceAll("\\s+", ""); // Remove espaços e quebras de linha
 
-        byte[] keyBytes = Base64.getDecoder().decode(privateKeyPEM);
-        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+    byte[] keyBytes = Base64.getDecoder().decode(privateKeyPEM);
+    PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
+    KeyFactory keyFactory = KeyFactory.getInstance("RSA");
 
-        return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+    return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
     }
 
     /*
@@ -174,6 +177,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
+                "http://localhost:4200",
                 "https://user-manager-angular.vercel.app",
                 "https://user-manager-spring.onrender.com"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
