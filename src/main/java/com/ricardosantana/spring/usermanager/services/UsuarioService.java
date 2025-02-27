@@ -71,6 +71,7 @@ public class UsuarioService {
         Usuario usuario = new Usuario();
         usuario.setId(entity.getId());
         usuario.setDataHoraCadastro(entity.getDataHoraCadastro());
+        usuario.setUsuarioCadastrado(entity.getUsuarioCadastrado());
         usuario.setNome(entity.getNome());
         usuario.setEmail(entity.getEmail());
         usuario.setSenha(passwordEncoder.encode(entity.getSenha()));
