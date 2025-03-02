@@ -10,14 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ricardosantana.spring.usermanager.enums.Role;
 import com.ricardosantana.spring.usermanager.models.Usuario;
+import com.ricardosantana.spring.usermanager.repositorys.UsuarioRepository;
 
 // classe gerada para criar um usuario no banco de dados com o password criptografado a partir da chave privada
 
 @Configuration
 public class AdminUserConfig implements CommandLineRunner {
 
-    private com.ricardosantana.spring.usermanager.repositorys.UsuarioRepository usuarioRepository;
-    private BCryptPasswordEncoder passwordEncoder;
+    private final UsuarioRepository usuarioRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public AdminUserConfig(com.ricardosantana.spring.usermanager.repositorys.UsuarioRepository usuarioRepository,
             BCryptPasswordEncoder passwordEncoder) {
