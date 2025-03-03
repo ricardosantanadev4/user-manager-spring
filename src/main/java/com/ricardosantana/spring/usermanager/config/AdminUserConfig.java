@@ -20,7 +20,7 @@ public class AdminUserConfig implements CommandLineRunner {
     private final UsuarioRepository usuarioRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public AdminUserConfig(com.ricardosantana.spring.usermanager.repositorys.UsuarioRepository usuarioRepository,
+    public AdminUserConfig(UsuarioRepository usuarioRepository,
             BCryptPasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
