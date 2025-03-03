@@ -12,7 +12,8 @@ O **User Manager Spring** é um sistema de backend para gerenciamento de usuári
 - Listagem de usuários  
 - Atualização de informações de usuários  
 - Exclusão de usuários  
-- Busca e filtros personalizados  
+- Busca e filtros personalizados
+- Informações sobre o estado do sistema (Spring-boot Adnub)  
 - Exportação de dados para **PDF** e **Excel** *(em desenvolvimento)*  
 
 ---
@@ -67,6 +68,21 @@ A API possui uma documentação interativa via Swagger, onde você pode visualiz
 📌 **Acesso à documentação:**  
 🔗 [Swagger - Ambiente Local](http://localhost:8080/api/swagger-ui)  
 🔗 [Swagger - Servidor Hospedado](https://user-manager-spring.onrender.com/api/swagger-ui)  
+
+### **Interface Gráfica com Informações sobre o Estado da API (Spring Boot Admin)**  
+
+A API conta com uma interface gráfica interativa fornecida pelo **Spring Boot Admin**, permitindo a visualização e o monitoramento do estado da aplicação em tempo real.  
+
+#### ✅ Funcionalidades:  
+- 📊 **Monitoramento** do status da API e seus serviços  
+- 📈 **Métricas** de desempenho (CPU, memória, threads, etc.)  
+- 📜 **Logs e eventos** em tempo real  
+- 🔍 **Detalhamento** dos endpoints expostos  
+- 🚨 **Notificações** sobre falhas e eventos críticos  
+
+#### 🔗 Acesso ao Painel  
+Para acessar o painel do **Spring Boot Admin**, utilize:  
+https://sring-boot-admin.onrender.com
 
 ### **Contato**
 Caso tenha alguma dúvida ou sugestão, fique à vontade para entrar em contato!
