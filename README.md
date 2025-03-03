@@ -5,7 +5,22 @@
 O **User Manager Spring** é um sistema de backend para gerenciamento de usuários, desenvolvido com **Spring-boot**. Este projeto faz parte do meu portfólio como desenvolvedor e demonstra habilidades em desenvolvimento de sistemas, integração entre tecnologias e boas práticas de programação.
 
 ---
+### **Diagrama de Classes**
 
+``` mermaid
+classDiagram
+    class Usuario {
+        +Long id
+        +LocalDateTime dataHoraCadastro
+        +String usuarioCadastrado
+        +String nome
+        +String email
+        +String senha
+        +String telefone
+        +String role
+    }
+```
+---
 ### **Funcionalidades**
 - Autenticação de usuário via token JWT
 - Cadastro de novos usuários  
@@ -69,6 +84,8 @@ A API possui uma documentação interativa via Swagger, onde você pode visualiz
 🔗 [Swagger - Ambiente Local](http://localhost:8080/api/swagger-ui)  
 🔗 [Swagger - Servidor Hospedado](https://user-manager-spring.onrender.com/api/swagger-ui)  
 
+---
+
 ### **Interface Gráfica com Informações sobre o Estado da API (Spring Boot Admin)**  
 
 A API conta com uma interface gráfica interativa fornecida pelo **Spring Boot Admin**, permitindo a visualização e o monitoramento do estado da aplicação em tempo real.  
@@ -84,5 +101,10 @@ A API conta com uma interface gráfica interativa fornecida pelo **Spring Boot A
 Para acessar o painel do **Spring Boot Admin**, utilize:  
 https://sring-boot-admin.onrender.com
 
+---
+
 ### **Contato**
-Caso tenha alguma dúvida ou sugestão, fique à vontade para entrar em contato!
+Caso tenha alguma dúvida ou sugestão, fique à vontade para entrar em contato:
+ricardosantanadev4@gmail.com
+
+---
