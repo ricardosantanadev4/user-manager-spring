@@ -181,7 +181,7 @@ public class SecurityConfig {
         config.setAllowedOrigins(List.of(
                 "http://localhost:4200",
                 "https://user-manager-angular.vercel.app",
-                "user-manager-spring-production.up.railway.app",
+                "https://user-manager-spring-production.up.railway.app",
                 "https://sring-boot-admin.onrender.com"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*")); // Permite todos os headers na requisição
