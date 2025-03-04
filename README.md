@@ -28,7 +28,7 @@ classDiagram
 - Atualização de informações de usuários  
 - Exclusão de usuários  
 - Busca e filtros personalizados
-- Informações sobre o estado do sistema (Spring-boot Adnub)  
+- Informações sobre o estado do sistema (Spring-boot Admin)  
 - Exportação de dados para **PDF** e **Excel** *(em desenvolvimento)*  
 
 ---
