@@ -1,4 +1,4 @@
-package com.ricardosantana.spring.usermanager.profiles;
+package com.ricardosantana.spring.usermanager.profiles.dev;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,11 +9,11 @@ import com.ricardosantana.spring.usermanager.services.DbService;
 
 @Configuration
 @Profile("dev")
-public class DevProfile {
+public class DevDBInitializer {
 
     private final DbService dbService;
 
-    public DevProfile(DbService dbService) {
+    public DevDBInitializer(DbService dbService) {
         this.dbService = dbService;
     }
 

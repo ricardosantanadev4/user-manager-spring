@@ -1,10 +1,6 @@
 package com.ricardosantana.spring.usermanager.config;
 
-import java.security.KeyFactory;
-import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.util.Base64;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,20 +18,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
-import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import com.nimbusds.jose.jwk.JWK;
-import com.nimbusds.jose.jwk.JWKSet;
-import com.nimbusds.jose.jwk.RSAKey;
-import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 
 @Configuration
 @EnableWebSecurity
@@ -111,31 +100,32 @@ public class SecurityConfig {
     // return new NimbusJwtEncoder(jwks);
     // }
 
-    // Configuração de ambiente de produção.
-    @Bean
-    public JwtEncoder jwtEncoder() throws Exception {
-        // Converte a chave privada da variável de ambiente para RSAPrivateKey
-        RSAPrivateKey privateKey = getPrivateKeyFromPEM(privateKeyPem);
+    // // Configuração de ambiente de produção.
+    // @Bean
+    // public JwtEncoder jwtEncoder() throws Exception {
+    // // Converte a chave privada da variável de ambiente para RSAPrivateKey
+    // RSAPrivateKey privateKey = getPrivateKeyFromPEM(privateKeyPem);
 
-        JWK jwk = new RSAKey.Builder(publicKey).privateKey(privateKey).build();
-        var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
-        return new NimbusJwtEncoder(jwks);
-    }
+    // JWK jwk = new RSAKey.Builder(publicKey).privateKey(privateKey).build();
+    // var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
+    // return new NimbusJwtEncoder(jwks);
+    // }
 
-    // Configuração de ambiente de produção.
-    private RSAPrivateKey getPrivateKeyFromPEM(String privateKeyPem) throws Exception {
-        // Remove cabeçalhos e rodapés do formato PEM
-        String privateKeyPEM = privateKeyPem
-                .replace("-----BEGIN PRIVATE KEY-----", "")
-                .replace("-----END PRIVATE KEY-----", "")
-                .replaceAll("\\s+", ""); // Remove espaços e quebras de linha
+    // // Configuração de ambiente de produção.
+    // private RSAPrivateKey getPrivateKeyFromPEM(String privateKeyPem) throws
+    // Exception {
+    // // Remove cabeçalhos e rodapés do formato PEM
+    // String privateKeyPEM = privateKeyPem
+    // .replace("-----BEGIN PRIVATE KEY-----", "")
+    // .replace("-----END PRIVATE KEY-----", "")
+    // .replaceAll("\\s+", ""); // Remove espaços e quebras de linha
 
-        byte[] keyBytes = Base64.getDecoder().decode(privateKeyPEM);
-        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+    // byte[] keyBytes = Base64.getDecoder().decode(privateKeyPEM);
+    // PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
+    // KeyFactory keyFactory = KeyFactory.getInstance("RSA");
 
-        return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
-    }
+    // return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+    // }
 
     /*
      * Retorna uma nova instância de BCryptPasswordEncoder, que estará disponível
