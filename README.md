@@ -49,8 +49,8 @@ classDiagram
 ---
 
 ### **Hospedagem**
-O projeto está hospedado na **Render** e pode ser acessado pela interface swagger-ui :  
-🔗 [Swagger - Servidor Hospedado](https://user-manager-spring.onrender.com/api/swagger-ui)  
+O projeto está hospedado na **Railway** e pode ser acessado pela interface swagger-ui :  
+🔗 [Swagger - Servidor Hospedado](https://user-manager-spring-production.up.railway.app/api/swagger-ui)  
 Para testar a API em funcionamento juntamente com o Frontend pode acessado pelo link:
 🔗 [User Manager Angular](https://user-manager-angular.vercel.app/auth/login) 
 (Para testar, use os seguintes emails: admin@domain.com e a senha Admin#2025 para o perfil Admin ou user@domain.com e senha User#2025 para testar o User. O usuário de perfil Admin pode realizar todas ações no sistema inclusive excluir e editar, enquanto o usuário de perfil User só tem permisão para visualizar as informações.)
@@ -82,7 +82,7 @@ A API possui uma documentação interativa via Swagger, onde você pode visualiz
 
 📌 **Acesso à documentação:**  
 🔗 [Swagger - Ambiente Local](http://localhost:8080/api/swagger-ui)  
-🔗 [Swagger - Servidor Hospedado](https://user-manager-spring.onrender.com/api/swagger-ui)  
+🔗 [Swagger - Servidor Hospedado](https://user-manager-spring-production.up.railway.app/api/swagger-ui)  
 
 ---
 
@@ -99,7 +99,8 @@ A API conta com uma interface gráfica interativa fornecida pelo **Spring Boot A
 
 #### 🔗 Acesso ao Painel  
 Para acessar o painel do **Spring Boot Admin**, utilize:  
-https://sring-boot-admin.onrender.com
+🔗[Spring-Boot Admin - Ambiente Local](http://localhost:8081)
+🔗[Spring-Boot Admin - Servidor Hospedado](https://sring-boot-admin-production.up.railway.app)
 
 ---
 
