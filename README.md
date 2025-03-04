@@ -53,10 +53,14 @@ O projeto está hospedado na **Railway** e pode ser acessado pela interface swag
 🔗 [Swagger - Servidor Hospedado](https://user-manager-spring-production.up.railway.app/api/swagger-ui)  
 Para testar a API em funcionamento juntamente com o Frontend pode acessado pelo link:  
 🔗 [User Manager Angular](https://user-manager-angular.vercel.app/auth/login)   
-(Para testar, use os seguintes emails:  
-admin@domain.com e a senha Admin#2025 para o perfil Admin.  
-user@domain.com e senha User#2025 para testar o User.  
-O usuário de perfil Admin pode realizar todas ações no sistema inclusive excluir e editar, enquanto o usuário de perfil User só tem permisão para visualizar as informações.)
+
+### **Longin**
+Durante a inicialicação do sistema são criados dois usuarios, um com perfil ADMIN e outro com perfil USER.  
+O login no sistema pode ser feito com as seguintes **Credenciais**:    
+admin@domain.com e a senha Admin#2025 para o perfil ADMIN.    
+user@domain.com e senha User#2025 para o perfil USER.    
+No Swagger o login é feito no endpoint de verbo **POST** em /token/login.
+O usuário de perfil **ADMIN** pode realizar todas ações no sistema inclusive excluir e editar, enquanto o usuário de perfil **USER** só tem permisão para visualizar as informações.
 
 ---
 
