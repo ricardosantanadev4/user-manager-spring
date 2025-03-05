@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,11 +28,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @RestController
 @RequestMapping("usuarios")
 @SecurityRequirement(name = "bearerAuth")
 @Tag(name = "Usuários", description = "Gerenciamento de usuários na aplicação")
+@Validated
 public class UsuarioController {
 
         private final UsuarioService usuarioService;
@@ -68,7 +73,7 @@ public class UsuarioController {
                                                         description = "Requisição inválida")
                         })
         @PostMapping("/criar")
-        public ResponseEntity<UsuarioDTO> criarUsuario(@RequestBody UsuarioDTO usuarioDto) {
+        public ResponseEntity<UsuarioDTO> criarUsuario(@RequestBody @Valid UsuarioDTO usuarioDto) {
                 UsuarioDTO body = this.usuarioService.criarUsuario(usuarioDto);
                 return new ResponseEntity<UsuarioDTO>(body, HttpStatus.CREATED);
         }
@@ -163,7 +168,7 @@ public class UsuarioController {
 
                                         example = "1")
 
-                        @PathVariable Long usuarioId) {
+                        @PathVariable @NotNull @Positive Long usuarioId) {
                 Usuario usuario = this.usuarioService.buscarUsuarioPorId(usuarioId);
                 UsuarioDTO usuarioDto = this.usuarioService.toDto(usuario);
                 return new ResponseEntity<UsuarioDTO>(usuarioDto, HttpStatus.OK);
@@ -210,7 +215,7 @@ public class UsuarioController {
 
                                         example = "1")
 
-                        @PathVariable Long usuarioId,
+                        @PathVariable @NotNull @Positive Long usuarioId,
 
                         @io.swagger.v3.oas.annotations.parameters.RequestBody(
 
@@ -269,7 +274,7 @@ public class UsuarioController {
 
                                         example = "1")
 
-                        @PathVariable Long usuarioId) {
+                        @PathVariable @NotNull @Positive Long usuarioId) {
                 this.usuarioService.removerUsuario(usuarioId);
                 return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
         }

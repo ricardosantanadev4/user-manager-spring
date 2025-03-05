@@ -30,7 +30,7 @@ public class DbService {
                     "Admin",
                     "User-" + (i + 1),
                     "email" + (i + 1) + "@gmail.com",
-                    passwordEncoder.encode("123"),
+                    passwordEncoder.encode("Dev#123"),
                     "81999999999",
                     Role.USER);
             this.usuarioRepository.save(usuario);
