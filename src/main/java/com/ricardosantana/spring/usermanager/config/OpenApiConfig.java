@@ -42,7 +42,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                                                 description = "Servidor Local"),
                                 @Server(
 
-                                                url = "https://user-manager-spring-production.up.railway.app/api",
+                                                url = "https://user-manager-spring.onrender.com/api",
 
                                                 description = "Servidor de Produção")
                 },

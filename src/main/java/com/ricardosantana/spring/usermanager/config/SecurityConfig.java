@@ -39,10 +39,6 @@ public class SecurityConfig {
     @Value("${jwt.public.key}")
     private RSAPublicKey publicKey;
 
-    // // Configuração de ambiente de desenvolvimento
-    // @Value("${jwt.private.key}")
-    // private RSAPrivateKey privateKey;
-
     // Configuração de ambiente de produção
     @Value("${jwt.private.key}")
     private String privateKeyPem;
@@ -82,50 +78,6 @@ public class SecurityConfig {
     public JwtDecoder jwtDecoder() {
         return NimbusJwtDecoder.withPublicKey(publicKey).build();
     }
-
-    // /*
-    // * Configuração de ambiente de desenvolvimento.
-    // * Cria e retorna um JwtEncoder, que é responsável por gerar tokens JWT
-    // * assinados usando uma chave RSA.
-    // * Detalhes:
-    // * Cria uma chave RSA usando a chave pública e privada.
-    // * this.publicKey: Chave pública (usada para validar tokens assinados).
-    // * this.privateKey: Chave privada (usada para assinar tokens JWT).
-    // * Retorna um encoder JWT que usa essa chave para assinar tokens.
-    // */
-    // @Bean
-    // public JwtEncoder jwtEncoder() {
-    // JWK jwk = new RSAKey.Builder(this.publicKey).privateKey(privateKey).build();
-    // var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
-    // return new NimbusJwtEncoder(jwks);
-    // }
-
-    // // Configuração de ambiente de produção.
-    // @Bean
-    // public JwtEncoder jwtEncoder() throws Exception {
-    // // Converte a chave privada da variável de ambiente para RSAPrivateKey
-    // RSAPrivateKey privateKey = getPrivateKeyFromPEM(privateKeyPem);
-
-    // JWK jwk = new RSAKey.Builder(publicKey).privateKey(privateKey).build();
-    // var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
-    // return new NimbusJwtEncoder(jwks);
-    // }
-
-    // // Configuração de ambiente de produção.
-    // private RSAPrivateKey getPrivateKeyFromPEM(String privateKeyPem) throws
-    // Exception {
-    // // Remove cabeçalhos e rodapés do formato PEM
-    // String privateKeyPEM = privateKeyPem
-    // .replace("-----BEGIN PRIVATE KEY-----", "")
-    // .replace("-----END PRIVATE KEY-----", "")
-    // .replaceAll("\\s+", ""); // Remove espaços e quebras de linha
-
-    // byte[] keyBytes = Base64.getDecoder().decode(privateKeyPEM);
-    // PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
-    // KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-
-    // return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
-    // }
 
     /*
      * Retorna uma nova instância de BCryptPasswordEncoder, que estará disponível
@@ -170,7 +122,7 @@ public class SecurityConfig {
         config.setAllowedOrigins(List.of(
                 "http://localhost:4200",
                 "https://user-manager-angular.vercel.app",
-                "https://user-manager-spring-production.up.railway.app"));
+                "https://user-manager-spring.onrender.com"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*")); // Permite todos os headers na requisição
         config.setExposedHeaders(List.of(HttpHeaders.AUTHORIZATION)); // Expondo o header Authorization

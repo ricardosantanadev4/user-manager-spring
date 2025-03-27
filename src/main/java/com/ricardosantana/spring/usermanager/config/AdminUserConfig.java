@@ -30,7 +30,7 @@ public class AdminUserConfig implements CommandLineRunner {
     @Transactional
     public void run(String... args) throws Exception {
 
-        Optional<Usuario> userAdmin = usuarioRepository.findByEmail("admin");
+        Optional<Usuario> userAdmin = usuarioRepository.findByEmail("admin@domain.com");
 
         userAdmin.ifPresentOrElse(
                 user -> {
