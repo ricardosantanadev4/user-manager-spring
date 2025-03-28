@@ -22,7 +22,7 @@ public class DbService {
     }
 
     public boolean instanciaDB() {
-        int numeroDeTestes = 20;
+        int numeroDeTestes = 40;
         for (int i = 0; i < numeroDeTestes; i++) {
             Usuario usuario = new Usuario(
                     null,

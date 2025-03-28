@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Profile;
 import com.ricardosantana.spring.usermanager.services.DbService;
 
 @Configuration
-@Profile("dev")
+@Profile("prod")
 public class DevDBInitializer {
 
     private final DbService dbService;
