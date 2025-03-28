@@ -22,7 +22,7 @@ public class DevDBInitializer {
 
     @Bean
     public boolean instanciaDB() {
-        if (ddl.equals("create")) {
+        if (ddl.equals("create-drop")) {
             this.dbService.instanciaDB();
         }
 
