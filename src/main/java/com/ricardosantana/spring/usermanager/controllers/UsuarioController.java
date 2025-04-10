@@ -1,8 +1,14 @@
 package com.ricardosantana.spring.usermanager.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ricardosantana.spring.usermanager.dtos.UsuarioDTO;
 import com.ricardosantana.spring.usermanager.dtos.UsuarioPageDTO;
 import com.ricardosantana.spring.usermanager.models.Usuario;
+import com.ricardosantana.spring.usermanager.repositorys.UsuarioRepository;
+import com.ricardosantana.spring.usermanager.services.ExcelExportService;
+import com.ricardosantana.spring.usermanager.services.PdfExportService;
 import com.ricardosantana.spring.usermanager.services.UsuarioService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -40,9 +49,16 @@ import jakarta.validation.constraints.Positive;
 public class UsuarioController {
 
         private final UsuarioService usuarioService;
+        private final ExcelExportService excelExport;
+        private final UsuarioRepository usuarioRepository;
+        private final PdfExportService pdfExportService;
 
-        public UsuarioController(UsuarioService usuarioService) {
+        public UsuarioController(UsuarioService usuarioService, ExcelExportService excelExport,
+                        UsuarioRepository usuarioRepository, PdfExportService pdfExportService) {
                 this.usuarioService = usuarioService;
+                this.excelExport = excelExport;
+                this.usuarioRepository = usuarioRepository;
+                this.pdfExportService = pdfExportService;
         }
 
         @Operation(
@@ -277,5 +293,34 @@ public class UsuarioController {
                         @PathVariable @NotNull @Positive Long usuarioId) {
                 this.usuarioService.removerUsuario(usuarioId);
                 return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+
+        @GetMapping("/export/xlsx")
+        public ResponseEntity<InputStreamResource> exportClientsToExcel() throws IOException {
+                List<Usuario> usuarios = this.usuarioRepository.findAll();
+
+                ByteArrayInputStream in = this.excelExport.exportClientsToExcel(usuarios);
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Disposition", "attachment; filename=clients.xlsx");
+
+                return ResponseEntity
+                                .ok()
+                                .headers(headers)
+                                .contentType(MediaType.parseMediaType(
+                                                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+                                .body(new InputStreamResource(in));
+        }
+
+        @GetMapping("/export/pdf")
+        public ResponseEntity<byte[]> gerarRelatorioClientes() throws IOException {
+                List<Usuario> usuarios = this.usuarioRepository.findAll();
+
+                byte[] pdfBytes = this.pdfExportService.gerarPdf(usuarios);
+
+                return ResponseEntity.ok()
+                                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=relatorio-clientes.pdf")
+                                .contentType(MediaType.APPLICATION_PDF)
+                                .body(pdfBytes);
         }
 }

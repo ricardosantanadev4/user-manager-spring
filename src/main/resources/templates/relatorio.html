@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"></meta>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        img{
+            margin: 10px;
+            width: 312px;
+        }
+        h1 {
+            text-align: center;
+            color: #000000;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #333;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <img th:src="${logoBase64}"/>
+    <h1>Relatório de Clientes</h1>
+    <p>Data: <span th:text="${data}"></span></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Data/Hora Cadastro</th>
+                <th>Usuário Cadastrado</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.id}">id</td>
+                <td th:text="${#temporals.format(cliente.dataHoraCadastro, 'dd-mm-yyyy HH:mm:ss')}">dataHoraCadastro</td>
+                <td th:text="${cliente.usuarioCadastrado}">usuarioCadastrado</td>
+                <td th:text="${cliente.nome}">nome</td>
+                <td th:text="${cliente.email}">email</td>
+                <td th:text="${cliente.telefone}">telefone</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
